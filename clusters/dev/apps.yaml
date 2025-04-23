@@ -7,9 +7,9 @@ spec:
     namespace: argocd
     server: https://kubernetes.default.svc
   source:
-    repoURL: 'https://gitlab.com/your-org/k8s-bootstrap.git'
+    repoURL: 'https://github.com/charlmex/k8s-bootstrap.git'
     path: base
-    targetRevision: HEAD
+    targetRevision: main
   project: default
   syncPolicy:
     automated:
