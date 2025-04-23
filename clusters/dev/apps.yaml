@@ -6,12 +6,13 @@ spec:
   destination:
     namespace: argocd
     server: https://kubernetes.default.svc
-  source:
-    repoURL: 'https://github.com/charlmex/k8s-bootstrap.git'
-    path: base
-    targetRevision: master
   project: default
+  source:
+    repoURL: https://github.com/charlmex/k8s-bootstrap.git
+    targetRevision: master
+    path: base
   syncPolicy:
     automated:
-      selfHeal: true
       prune: true
+      selfHeal: true
+
