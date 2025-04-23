@@ -10,21 +10,18 @@ spec:
   source:
     repoURL: https://helm.traefik.io/traefik
     chart: traefik
-    targetRevision: 26.1.0  # Check latest if needed
+    targetRevision: 26.1.0  # or latest
     helm:
       values: |
+        deployment:
+          enabled: true
+        service:
+          enabled: true
         ingressRoute:
           dashboard:
             enabled: true
-        ports:
-          web:
-            exposedPort: 80
-          websecure:
-            exposedPort: 443
-        service:
-          type: NodePort  # Or LoadBalancer if your env supports it
+        installCRDs: false
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
-
