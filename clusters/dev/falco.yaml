@@ -4,7 +4,7 @@ metadata:
   name: falco
 spec:
   destination:
-    namespace: falco
+    namespace: security
     server: https://kubernetes.default.svc
   project: default
   source:
