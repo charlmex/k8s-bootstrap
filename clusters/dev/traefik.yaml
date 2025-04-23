@@ -11,6 +11,9 @@ spec:
     repoURL: https://github.com/charlmex/k8s-bootstrap.git
     targetRevision: master
     path: apps/traefik
+    helm:
+      values: |
+        installCRDs: true  # Ensure CRDs are enabled
   syncPolicy:
     automated:
       prune: true
