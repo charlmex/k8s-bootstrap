@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: traefik
+spec:
+  destination:
+    namespace: traefik
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    repoURL: https://github.com/charlmex/k8s-bootstrap.git
+    targetRevision: master
+    path: apps/traefik
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
