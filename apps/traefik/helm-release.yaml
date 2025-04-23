@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: https://helm.traefik.io/traefik
     chart: traefik
-    targetRevision: 27.0.2  # Check latest if needed
+    targetRevision: 26.1.0  # Check latest if needed
     helm:
       values: |
         installCRDs: true  # Enable CRD installation
