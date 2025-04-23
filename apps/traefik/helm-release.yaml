@@ -1,4 +1,3 @@
-apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: traefik
@@ -10,9 +9,10 @@ spec:
   source:
     repoURL: https://helm.traefik.io/traefik
     chart: traefik
-    targetRevision: 26.1.0  # Check latest if needed
+    targetRevision: 27.0.2  # Check latest if needed
     helm:
       values: |
+        installCRDs: true  # Enable CRD installation
         ingressRoute:
           dashboard:
             enabled: true
