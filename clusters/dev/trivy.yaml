@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: trivy
+spec:
+  destination:
+    namespace: trivy
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    repoURL: https://github.com/charlmex/k8s-bootstrap.git
+    targetRevision: master
+    path: base/security/trivy
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
