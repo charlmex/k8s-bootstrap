@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: traefik-crds
+  namespace: traefik
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: traefik-crds
+  template:
+    metadata:
+      labels:
+        app: traefik-crds
+    spec:
+      containers:
+        - name: traefik-crds
+          image: traefik:v2.5  # Use the appropriate Traefik image version
+          command: ["helm", "install", "traefik", "traefik/traefik", "--set", "installCRDs=true"]

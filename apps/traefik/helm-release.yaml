@@ -1,3 +1,4 @@
+apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: traefik
@@ -12,7 +13,6 @@ spec:
     targetRevision: 26.1.0  # Check latest if needed
     helm:
       values: |
-        installCRDs: true  # Enable CRD installation
         ingressRoute:
           dashboard:
             enabled: true
@@ -27,3 +27,4 @@ spec:
     automated:
       prune: true
       selfHeal: true
+
