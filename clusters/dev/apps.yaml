@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: 'https://github.com/charlmex/k8s-bootstrap.git'
     path: base
-    targetRevision: main
+    targetRevision: master
   project: default
   syncPolicy:
     automated:
