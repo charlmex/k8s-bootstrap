@@ -1,0 +1,23 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: devs-edit
+  namespace: dev-team
+rules:
+- apiGroups: ["", "apps", "batch"]
+  resources: ["deployments", "pods", "services", "configmaps", "secrets"]
+  verbs: ["get", "list", "watch", "create", "update", "delete"]
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: devs-binding
+  namespace: dev-team
+subjects:
+- kind: User
+  name: dev@company.com
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: devs-edit
+  apiGroup: rbac.authorization.k8s.io
