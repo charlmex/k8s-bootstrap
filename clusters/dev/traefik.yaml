@@ -12,8 +12,11 @@ spec:
     targetRevision: master
     path: apps/traefik
     helm:
-      values: |
-        installCRDs: true  # Ensure CRDs are enabled
+      valueFiles:
+        - values.yaml
+      parameters:
+        - name: installCRDs
+          value: "true"
   syncPolicy:
     automated:
       prune: true
