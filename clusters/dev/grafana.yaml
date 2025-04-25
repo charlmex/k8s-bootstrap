@@ -1,7 +1,8 @@
+  GNU nano 6.2                                                                                      trivy.yaml *
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: trivy
+  name: grafana
 spec:
   destination:
     namespace: monitoring
@@ -10,7 +11,7 @@ spec:
   source:
     repoURL: https://github.com/charlmex/k8s-bootstrap.git
     targetRevision: master
-    path: base/security/trivy-operator
+    path: base/monitoring/grafana
     helm:
       valuesFiles:
         - values.yaml
