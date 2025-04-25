@@ -2,6 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: prometheus
+  namespace: argocd
 spec:
   destination:
     namespace: monitoring
@@ -14,6 +15,7 @@ spec:
     helm:
       valuesFiles:
         - values.yaml
+        - dynamic-values.yaml
   syncPolicy:
     automated:
       prune: true
