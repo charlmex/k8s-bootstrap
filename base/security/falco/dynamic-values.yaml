@@ -1,0 +1,41 @@
+# Custom values for Falco in resource-constrained environments
+resources:
+  # Reduced resource requests
+  requests:
+    cpu: 50m  # Reduced from 100m
+    memory: 256Mi  # Reduced from 512Mi
+  # Reduced resource limits
+  limits:
+    cpu: 500m  # Reduced from 1000m
+    memory: 512Mi  # Reduced from 1024Mi
+
+# Control replica count
+replicaCount: 1  # Explicitly set to 1
+
+# Disable unnecessary modules to save resources
+falco:
+  # Disable ebpf if not needed (uses less resources than kernel module)
+  ebpf:
+    enabled: false
+
+  # Reduce syscall event buffering
+  outputs:
+    rate: 10
+    max_burst: 20
+
+  # Only enable essential rules
+  rules_file:
+    - rules/falco_rules.yaml
+    - rules/falco_rules.local.yaml
+    # Disable less critical rule files
+    # - rules/k8s_audit_rules.yaml
+    # - rules/application_rules.yaml
+
+# Optional: Schedule to specific nodes if needed
+nodeSelector:
+  kubernetes.io/arch: amd64
+
+# Disable unnecessary outputs
+falcoctl:
+  artifact:
+    follow: false  # Don't follow artifact updates

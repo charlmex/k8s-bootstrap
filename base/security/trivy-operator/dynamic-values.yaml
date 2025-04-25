@@ -1,0 +1,43 @@
+# Custom values for Trivy in resource-constrained environments
+server:
+  # Reduce server resources
+  resources:
+    requests:
+      cpu: 100m  # Reduced from 200m
+      memory: 256Mi  # Reduced from 512Mi
+    limits:
+      cpu: 500m  # Reduced from 1 core
+      memory: 512Mi  # Reduced from 1Gi
+
+  # Reduce replicas
+  replicaCount: 1  # Default is usually 1, but explicitly set
+
+operator:
+  # Reduce operator resources
+  resources:
+    requests:
+      cpu: 50m
+      memory: 64Mi
+    limits:
+      cpu: 200m
+      memory: 128Mi
+
+scanJob:
+  # Reduce scan job resources
+  resources:
+    requests:
+      cpu: 50m  # Reduced from 100m
+      memory: 50M  # Reduced from 100M
+    limits:
+      cpu: 200m  # Reduced from 500m
+      memory: 200M  # Reduced from 500M
+
+  # Limit concurrent scans
+  scanJobsConcurrency: 1  # Default is often 10
+
+vulnerabilityScanner:
+  enabled: true
+  replicas: 1
+
+# Optional: Adjust scan frequency
+schedule: "0 0 * * *"  # Daily instead of frequent scans

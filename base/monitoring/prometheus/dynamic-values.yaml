@@ -6,3 +6,8 @@ prometheus:
       fsGroup: 65534
     podSecurityContext:
       fsGroup: 65534
+    # Disable persistent storage
+    storageSpec: {}
+    # OR explicitly disable with:
+    # storageSpec:
+    #   emptyDir: {}

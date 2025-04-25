@@ -1,0 +1,71 @@
+# Custom values for Kyverno in resource-constrained environments
+
+# Control replica counts
+replicaCount: 1  # For all controllers (background, reports, cleanup)
+
+# Resource configurations for all components
+resources:
+  requests:
+    cpu: 50m  # Reduced from default
+    memory: 128Mi  # Reduced from default
+  limits:
+    cpu: 200m  # Reduced from default
+    memory: 256Mi  # Reduced from default
+
+# Component-specific configurations
+backgroundController:
+  resources:
+    requests:
+      cpu: 50m
+      memory: 128Mi
+    limits:
+      cpu: 200m
+      memory: 256Mi
+
+reportsController:
+  resources:
+    requests:
+      cpu: 50m
+      memory: 128Mi
+    limits:
+      cpu: 200m
+      memory: 256Mi
+
+cleanupController:
+  resources:
+    requests:
+      cpu: 50m
+      memory: 128Mi
+    limits:
+      cpu: 200m
+      memory: 256Mi
+
+# Admission controller configuration
+admissionController:
+  replicaCount: 1
+  resources:
+    requests:
+      cpu: 50m
+      memory: 128Mi
+    limits:
+      cpu: 200m
+      memory: 256Mi
+
+# Test configuration (reduced from defaults)
+test:
+  resources:
+    limits:
+      cpu: 50m  # Reduced from 100m
+      memory: 128Mi  # Reduced from 256Mi
+    requests:
+      cpu: 5m  # Reduced from 10m
+      memory: 32Mi  # Reduced from 64Mi
+
+# Disable unnecessary features
+generatecontroller:
+  workers: 1  # Reduced from default 10
+  maxQueuedEvents: 100  # Reduced from default 1000
+
+# Policy configuration
+policyController:
+  workers: 1  # Reduced from default
