@@ -11,6 +11,9 @@ spec:
     repoURL: https://github.com/charlmex/k8s-bootstrap.git
     targetRevision: master
     path: base/monitoring/prometheus
+    helm:
+      valuesFiles:
+        - values.yaml
   syncPolicy:
     automated:
       prune: true
