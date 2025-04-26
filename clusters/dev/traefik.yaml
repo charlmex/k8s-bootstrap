@@ -15,6 +15,7 @@ spec:
     helm:
       valueFiles:
         - values.yaml
+        - dynamic-values.yaml
       parameters:
         - name: installCRDs
           value: "true"
