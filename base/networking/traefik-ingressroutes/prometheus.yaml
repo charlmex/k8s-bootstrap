@@ -10,5 +10,5 @@ spec:
     - match: Host(`prometheus.local`)
       kind: Rule
       services:
-        - name: kube-prometheus-stack-prometheus
+        - name: prometheus-server
           port: 9090
