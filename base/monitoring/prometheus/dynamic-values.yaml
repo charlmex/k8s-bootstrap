@@ -1,13 +1,32 @@
+# Disable Alertmanager
+alertmanager:
+  enabled: false  # Disable Alertmanager
+
+# Disable Persistent Volumes for Prometheus
 prometheus:
   prometheusSpec:
-    securityContext:
-      runAsUser: 65534
-      runAsGroup: 65534
-      fsGroup: 65534
-    podSecurityContext:
-      fsGroup: 65534
-    # Disable persistent storage
-    storageSpec: {}
-    # OR explicitly disable with:
-    # storageSpec:
-    #   emptyDir: {}
+    storageSpec:
+      volumeClaimTemplate: {}  # Set this to an empty value to disable PVC
+
+# If you have a storage class for Prometheus, you can also disable it entirely:
+prometheus:
+  prometheusSpec:
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          resources:
+            requests:
+              storage: 0Gi  # Effectively disables PVC by setting size to 0
+
+# Optionally, if you are also using PVC in other parts of Prometheus (such as for data storage), set:
+prometheus:
+  prometheusSpec:
+    storageSpec:
+      volumeClaimTemplate: null  # Remove PVC entirely
+
+# Other configurations that could be useful:
+# Disable persistent volume for Alertmanager if you disabled Alertmanager entirely
+alertmanager:
+  persistentVolume:
+    enabled: false  # Disable alertmanager's persistent volume if applicable
+

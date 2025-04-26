@@ -1,0 +1,20 @@
+# Disable Alertmanager in Loki
+alertmanager:
+  enabled: false  # Disable Alertmanager component
+
+# Disable PVC for Loki
+loki:
+  persistence:
+    enabled: false  # Disable PVC for Loki (no persistent storage)
+
+# Optionally, if you're using other storage backends, configure them accordingly:
+loki:
+  config:
+    storage_config:
+      boltdb_shipper:
+        active_index_directory: /tmp/loki/index
+        cache_location: /tmp/loki/cache
+      filesystem:
+        directory: /tmp/loki/chunks
+
+# This part ensures Loki doesn't use persistent volume for chunks or index storage
